@@ -7,7 +7,7 @@
   "scripts": {
     "start": "concurrently \"npm run start:backend\" \"npm run start:python\"",
     "start:backend": "node src/server.js",
-    "start:python": "python \"C:\\Users\\ABIE\\Desktop\\Mern stack canteen\\backend\\src\\Data\\update_csv_from_mongodb.py\""
+    "start:python": "python src/Data/update_csv_from_mongodb.py"
   },
   "keywords": [],
   "author": "",

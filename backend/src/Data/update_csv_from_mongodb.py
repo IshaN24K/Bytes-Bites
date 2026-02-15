@@ -1,14 +1,22 @@
+import os
 import csv
+from dotenv import load_dotenv
 from pymongo import MongoClient
 
-client = MongoClient('mongodb://localhost:27017/')
+# Load variables from .env file
+load_dotenv()
+
+# Get the URI from environment variables
+# This looks for the label MONGO_URI inside your .env file
+mongo_uri = os.getenv("MONGO_URI")
+client = MongoClient(mongo_uri)
 db = client['canteen-db']
 users_collection = db['users']
 orders_collection = db['orders']
 
 orders_data = orders_collection.find({})
 
-csv_file_path = '/Users/ABIE/Desktop/Mern stack canteen/backend/src/Data/extract_data.csv'
+csv_file_path = 'src/Data/extract_data.csv'
 
 fieldnames = ['_id', 'user_name', 'email', 'food_name', 'totalPrice', 'status', 'createdAt', 'updatedAt', 'paymentId', 'quantity']
 
