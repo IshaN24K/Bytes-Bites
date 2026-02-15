@@ -19,7 +19,12 @@ const __dirname = dirname(__filename);
 
 const app = express();
 app.use(express.json());
-app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
+app.use(cors({
+  credentials: true,
+  origin: process.env.NODE_ENV === 'production'
+    ? ['https://your-frontend-url.onrender.com'] // <--- Paste your actual Frontend URL here
+    : ['http://localhost:3000']
+}));
 
 // --- FIXED: Path points to backend/public instead of backend/src/public ---
 const publicFolder = path.join(__dirname, '..', 'public');
